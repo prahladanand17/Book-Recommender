@@ -2,7 +2,7 @@ from flask import Blueprint, current_app, request, redirect, url_for, session
 import tweepy
 from flask import render_template
 
-loginBluePrint = Blueprint('auth', __name__)
+loginBluePrint = Blueprint('root', __name__)
 
 
 @loginBluePrint.route('/login', methods=['GET'])
@@ -41,8 +41,8 @@ def authenticate():
 
     # The consumer keys can be found on your application's Details
     # page located at https://dev.twitter.com/apps (under "OAuth settings")
-    consumer_key = config['TWITTER_CONSUMER_KEY']
-    consumer_secret = config['TWITTER_CONSUMER_SECRET']
+    consumer_key = config['CONSUMER_KEY']
+    consumer_secret = config['CONSUMER_SECRET']
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret,
                                url_for('root.authenticated',
@@ -73,8 +73,8 @@ def authenticated():
 
     # Get the access token using the verifier token.
     if oauth_token and verifier:
-        consumer_key = config['TWITTER_CONSUMER_KEY']
-        consumer_secret = config['TWITTER_CONSUMER_SECRET']
+        consumer_key = config['CONSUMER_KEY']
+        consumer_secret = config['CONSUMER_SECRET']
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret,
                                    url_for('root.authenticated',
                                            _external=True))
