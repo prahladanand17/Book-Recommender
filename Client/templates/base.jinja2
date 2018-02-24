@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <!-- Meta content -->
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta name='description'
+              content='Example application demonstrating social APIs'>
+        <title>{{ APP_NAME }}</title>
+
+        <!-- Style -->
+        <link rel='stylesheet'
+              href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
+              integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm'
+              crossorigin='anonymous'>
+        <link rel='stylesheet' type='text/css'
+              href='{{ url_for('static', filename='style/app.css') }}'>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div class='page-container'>
+            <div class='banner'>
+                <div class='app-title'>{{ APP_NAME }}</div>
+            </div>
+            <div class='page-content'>
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        {% block tail %}{% endblock %}
+    </body>
+</html>
