@@ -2,7 +2,7 @@ from flask import Blueprint, current_app, request, redirect, url_for, session
 import tweepy
 from flask import render_template
 
-loginBluePrint = Blueprint('root', __name__)
+loginBluePrint = Blueprint('login', __name__)
 
 
 @loginBluePrint.route('/login', methods=['GET'])
@@ -27,7 +27,7 @@ def logout():
 
     # user has been logged-out. But need to render a view. So re-direct the
     # user back to login page.
-    return redirect(url_for('root.login'))
+    return redirect(url_for('login.login'))
 
 
 @loginBluePrint.route('/login', methods=['POST'])
@@ -45,7 +45,7 @@ def authenticate():
     consumer_secret = config['CONSUMER_SECRET']
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret,
-                               url_for('root.authenticated',
+                               url_for('login.authenticated',
                                        _external=True))
     redirect_url = auth.get_authorization_url(signin_with_twitter=True)
 
@@ -76,7 +76,7 @@ def authenticated():
         consumer_key = config['CONSUMER_KEY']
         consumer_secret = config['CONSUMER_SECRET']
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret,
-                                   url_for('root.authenticated',
+                                   url_for('login.authenticated',
                                            _external=True))
         auth.request_token = session['request_token']
 
@@ -111,4 +111,4 @@ def authenticated():
     # redirect back to login page.
     # TODO: Figure out the best way to set some error message to be shown in
     # the login apge.
-    return redirect(url_for('root.login'))
+    return redirect(url_for('login.login'))

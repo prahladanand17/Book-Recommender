@@ -1,7 +1,7 @@
 import os;
 import tweepy;
 from flask import Flask;
-from Server.twitter.routes.root import loginBluePrint
+from Server.twitter.routes.login import loginBluePrint
 from Server.twitter.routes.home import homeBlueprint
 
 def create_app():
