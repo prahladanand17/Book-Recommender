@@ -41,18 +41,18 @@ def home():
 
 
     words = raw_text.split()
-    words = clean_text(words)
+    text = clean_text(words)
 
 
 
-    vocab = set(raw_text)
-    vocab_size = len(words)
+    vocab = set(text)
+    vocab_size = len(text)
 
     for i, word in enumerate(vocab):
         word_to_ix[word] = i
         ix_to_word[i] = word
 
-    context_data, context, target = get_context_data(raw_text)
+    context_data, context, target = get_context_data(text)
 
 
     model = CBOW(vocab_size, config['EMBEDDING_DIM'])

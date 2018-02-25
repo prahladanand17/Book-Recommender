@@ -20,8 +20,9 @@ def contains_numbers(s):
         return any(char.isdigit)
 
 def clean_text(words):
-    for i in range(words):
-        if contains_numbers(words[i]):
-            words.pop(words[i])
-    return words
+    text = []
+    for i in len(words):
+        if not contains_numbers(words[i]):
+            text.append(words[i])
+    return text
 
