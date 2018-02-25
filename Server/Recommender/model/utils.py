@@ -14,7 +14,7 @@ def get_context_data(text):
         target = text[i]
         data.append((context, target))
 
-    return data, context, target
+        return data, context, target
 
 
 
