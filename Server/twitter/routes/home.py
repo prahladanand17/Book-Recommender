@@ -41,6 +41,10 @@ def home():
 
 
     words = raw_text.split()
+    words = clean_text(words)
+
+
+
     vocab = set(raw_text)
     vocab_size = len(words)
 
