@@ -18,8 +18,8 @@ class CBOW(torch.nn.Module):
         out = self.model(embedding)
         return out
 
-    def get_embed(self, word_to_index, word):
-        word = Variable(torch.FloatTensor(word_to_index[word]))
+    def get_embed(self, word_to_ix, word):
+        word = Variable(torch.FloatTensor(word_to_ix[word]))
         return self.embeddings(word).view(1,-1)
 
 

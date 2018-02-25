@@ -59,7 +59,8 @@ def home():
     loss_function = nn.NLLLoss()
     gd_optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
 
-    train(model, context_data, loss_function, gd_optimizer, 50, context, target, word_to_ix)
+    train(model, context_data, loss_function, gd_optimizer, 50, word_to_ix)
+
 
 
 

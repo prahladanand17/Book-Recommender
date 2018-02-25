@@ -18,15 +18,17 @@ def get_context_data(text):
 
 
 
-def train(model, data, loss_function, optimizer, num_iter, context, target, word_to_ix):
+def train(model, data, loss_function, optimizer, num_iter, word_to_ix):
     for i in range(num_iter):
         total_loss = 0
         for context, target in data:
             context_vec = [word_to_ix[w] for w in context]
             context_var = Variable(torch.LongTensor(context_vec))
+            target_vec = [word_to_ix[target]]
+            target_var = Variable(torch.LongTensor(target_vec))
             model.zero_grad()
             prob = model(context_var)
-            loss = loss_function(prob, torch.max(target, 1)[1])
+            loss = loss_function(prob, target_var)
             loss.backward()
             optimizer.step()
             total_loss += loss.data
