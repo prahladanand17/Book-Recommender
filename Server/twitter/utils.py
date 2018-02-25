@@ -14,8 +14,7 @@ def get_user_text(tweets):
     return text
 
 def contains_numbers(s):
-    for char in s:
-        return any(char.isdigit)
+    return any(char.isdigit() for char in s)
 
 def clean_text(words):
     text = []
@@ -25,9 +24,9 @@ def clean_text(words):
                                u"\U0001F680-\U0001F6FF"  # transport & map symbols
                                u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
                                "]+", flags=re.UNICODE)
-    for i in len(words):
-        if not contains_numbers(words[i]):
-            text.append(emoji_pattern.sub(r'', words[i]))
+    for w in words:
+        if not contains_numbers(w):
+            text.append(emoji_pattern.sub(r'', w))
 
     return text
 

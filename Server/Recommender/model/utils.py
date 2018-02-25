@@ -26,9 +26,7 @@ def train(model, data, loss_function, optimizer, num_iter, context, target, word
             context_var = Variable(torch.LongTensor(context_vec))
             model.zero_grad()
             prob = model(context_var)
-            print(context, target)
-            print(Variable(torch.LongTensor(word_to_ix[target])))
-            loss = loss_function(prob, Variable(torch.LongTensor(word_to_ix[target])))
+            loss = loss_function(prob, torch.max(target, 1)[1])
             loss.backward()
             optimizer.step()
             total_loss += loss.data
