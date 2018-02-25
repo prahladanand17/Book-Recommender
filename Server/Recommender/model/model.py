@@ -11,15 +11,15 @@ class CBOW(torch.nn.Module):
         self.model = nn.Sequential(nn.Linear(embedding_dimension, 150),
                                    nn.ReLU(),
                                    nn.Linear(150, embedding_dimension),
-                                   nn.LogSoftmax)
+                                   nn.LogSoftmax())
 
     def forward(self, input):
         embedding = sum(self.embeddings(input)).view(1,-1)
         out = self.model(embedding)
         return out
 
-    def get_embed(self, words, word):
-        word = Variable(torch.LongTensor(words[word]))
+    def get_embed(self, word_to_index, word):
+        word = Variable(torch.FloatTensor(word_to_index[word]))
         return self.embeddings(word).view(1,-1)
 
 

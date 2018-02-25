@@ -9,5 +9,5 @@ def combine(my_tweets, retweets):
 def get_user_text(tweets):
     text = ""
     for key in tweets:
-        text += key.full_text
+        text += key.full_text + " "
     return text
